@@ -40,6 +40,8 @@
 #include "enums.h"
 #include "position.h"
 #include <boost/lexical_cast.hpp>
+#include <iostream>
+#include <boost/stacktrace.hpp>
 
 class Thing;
 class Creature;
@@ -221,10 +223,14 @@ class LuaScriptInterface
 
 		static ScriptEnvironment* getScriptEnv() {
 			assert(scriptEnvIndex >= 0 && scriptEnvIndex < 16);
+      std::cout << "LuaScriptInterface::getScriptEnv(), scriptEnvIndex=" << scriptEnvIndex << ", stacktrace:\n";
+      std::cout << boost::stacktrace::stacktrace() << std::endl;
 			return scriptEnv + scriptEnvIndex;
 		}
 
 		static bool reserveScriptEnv() {
+      std::cout << "LuaScriptInterface::reserveScriptEnv(), stacktrace:\n";
+      std::cout << boost::stacktrace::stacktrace() << std::endl;
 			return ++scriptEnvIndex < 16;
 		}
 
