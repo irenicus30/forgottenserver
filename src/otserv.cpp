@@ -58,6 +58,7 @@ void startupErrorMessage(const std::string& errorStr)
 	g_loaderSignal.notify_all();
 }
 
+void initTrivialLogger();
 void mainLoader(int argc, char* argv[], ServiceManager* services);
 
 [[noreturn]] void badAllocationHandler()
@@ -70,6 +71,8 @@ void mainLoader(int argc, char* argv[], ServiceManager* services);
 
 int main(int argc, char* argv[])
 {
+  initTrivialLogger();
+
 	// Setup bad allocation handler
 	std::set_new_handler(badAllocationHandler);
 
@@ -96,6 +99,14 @@ int main(int argc, char* argv[])
 	g_databaseTasks.join();
 	g_dispatcher.join();
 	return 0;
+}
+
+void initTrivialLogger()
+{
+  boost::log::core::get()->set_filter
+  (
+    boost::log::trivial::severity >= boost::log::trivial::info
+  );
 }
 
 void mainLoader(int, char*[], ServiceManager* services)

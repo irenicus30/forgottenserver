@@ -40,5 +40,8 @@
 #include <vector>
 
 #include <boost/asio.hpp>
+#include <boost/log/core.hpp>
+#include <boost/log/trivial.hpp>
+#include <boost/log/expressions.hpp>
 
 #include <pugixml.hpp>

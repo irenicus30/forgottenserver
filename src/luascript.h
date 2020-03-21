@@ -223,14 +223,14 @@ class LuaScriptInterface
 
 		static ScriptEnvironment* getScriptEnv() {
 			assert(scriptEnvIndex >= 0 && scriptEnvIndex < 16);
-      std::cout << "LuaScriptInterface::getScriptEnv(), scriptEnvIndex=" << scriptEnvIndex << ", stacktrace:\n";
-      std::cout << boost::stacktrace::stacktrace() << std::endl;
+      BOOST_LOG_TRIVIAL(info) << "LuaScriptInterface::getScriptEnv(), scriptEnvIndex=" << scriptEnvIndex << ", stacktrace:\n";
+      BOOST_LOG_TRIVIAL(info) << boost::stacktrace::stacktrace() << std::endl;
 			return scriptEnv + scriptEnvIndex;
 		}
 
 		static bool reserveScriptEnv() {
-      std::cout << "LuaScriptInterface::reserveScriptEnv(), stacktrace:\n";
-      std::cout << boost::stacktrace::stacktrace() << std::endl;
+      BOOST_LOG_TRIVIAL(info) << "LuaScriptInterface::reserveScriptEnv(), stacktrace:\n";
+      BOOST_LOG_TRIVIAL(info) << boost::stacktrace::stacktrace() << std::endl;
 			return ++scriptEnvIndex < 16;
 		}
 
