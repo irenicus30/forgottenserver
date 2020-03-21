@@ -169,8 +169,7 @@ pip-log.txt
 
 # Vim files
 *~
-.*.swp
-.*.swo
+.*.sw[a-z]
 
 #############
 ## TFS / OT

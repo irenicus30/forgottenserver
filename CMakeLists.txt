@@ -10,7 +10,6 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(cotire)
 
 add_compile_options(-Wall -Werror -pipe -fvisibility=hidden)
-add_definitions(-DBOOST_STACKTRACE_USE_BACKTRACE)
 
 set(CMAKE_CXX_FLAGS_PERFORMANCE "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
 set(CMAKE_BUILD_TYPE Debug)
@@ -49,7 +48,7 @@ set(_Boost_STACKTRACE_BASIC_HEADERS     "boost/stacktrace.hpp")
 set(_Boost_STACKTRACE_BACKTRACE_HEADERS "boost/stacktrace.hpp")
 set(_Boost_STACKTRACE_ADDR2LINE_HEADERS "boost/stacktrace.hpp")
 set(_Boost_STACKTRACE_NOOP_HEADERS      "boost/stacktrace.hpp")
-#set(Boost_USE_STATIC_LIBS ON)
+add_definitions(-DBOOST_STACKTRACE_USE_BACKTRACE)
 add_definitions(-DBOOST_LOG_DYN_LINK)
 
 find_package(Boost 1.65.0 COMPONENTS system filesystem iostreams stacktrace_basic stacktrace_backtrace stacktrace_addr2line stacktrace_noop log log_setup REQUIRED)
