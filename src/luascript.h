@@ -41,7 +41,6 @@
 #include "position.h"
 #include <boost/lexical_cast.hpp>
 #include <iostream>
-#include <boost/stacktrace.hpp>
 
 class Thing;
 class Creature;
@@ -223,14 +222,11 @@ class LuaScriptInterface
 
 		static ScriptEnvironment* getScriptEnv() {
 			assert(scriptEnvIndex >= 0 && scriptEnvIndex < 16);
-      BOOST_LOG_TRIVIAL(info) << "LuaScriptInterface::getScriptEnv(), scriptEnvIndex=" << scriptEnvIndex << ", stacktrace:\n";
-      BOOST_LOG_TRIVIAL(info) << boost::stacktrace::stacktrace() << std::endl;
 			return scriptEnv + scriptEnvIndex;
 		}
 
 		static bool reserveScriptEnv() {
-      BOOST_LOG_TRIVIAL(info) << "LuaScriptInterface::reserveScriptEnv(), stacktrace:\n";
-      BOOST_LOG_TRIVIAL(info) << boost::stacktrace::stacktrace() << std::endl;
+      BOOST_LOG_TRIVIAL(info) << "LuaScriptInterface::reserveScriptEnv(), scriptEnvIndex: " << scriptEnvIndex << std::endl;
 			return ++scriptEnvIndex < 16;
 		}
 

@@ -49,7 +49,8 @@ set(_Boost_STACKTRACE_BASIC_HEADERS     "boost/stacktrace.hpp")
 set(_Boost_STACKTRACE_BACKTRACE_HEADERS "boost/stacktrace.hpp")
 set(_Boost_STACKTRACE_ADDR2LINE_HEADERS "boost/stacktrace.hpp")
 set(_Boost_STACKTRACE_NOOP_HEADERS      "boost/stacktrace.hpp")
-set(Boost_USE_STATIC_LIBS ON)
+#set(Boost_USE_STATIC_LIBS ON)
+add_definitions(-DBOOST_LOG_DYN_LINK)
 
 find_package(Boost 1.65.0 COMPONENTS system filesystem iostreams stacktrace_basic stacktrace_backtrace stacktrace_addr2line stacktrace_noop log log_setup REQUIRED)
 
