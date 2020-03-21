@@ -10,8 +10,10 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(cotire)
 
 add_compile_options(-Wall -Werror -pipe -fvisibility=hidden)
+add_definitions(-DBOOST_STACKTRACE_USE_BACKTRACE)
 
 set(CMAKE_CXX_FLAGS_PERFORMANCE "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
+set(CMAKE_BUILD_TYPE Debug)
 
 if (CMAKE_COMPILER_IS_GNUCXX)
     add_compile_options(-fno-strict-aliasing)
