@@ -20,6 +20,8 @@
 #include "otpch.h"
 
 #include <boost/range/adaptor/reversed.hpp>
+#include <boost/stacktrace.hpp>
+
 
 #include "luascript.h"
 #include "chat.h"
@@ -984,6 +986,9 @@ void LuaScriptInterface::registerFunctions()
 
 	//doSetCreatureLight(cid, lightLevel, lightColor, time)
 	lua_register(luaState, "doSetCreatureLight", LuaScriptInterface::luaDoSetCreatureLight);
+
+  //printstackTrace()
+  lua_register(luaState, "printStackTrace", LuaScriptInterface::luaPrintStackTrace);
 
 	//isValidUID(uid)
 	lua_register(luaState, "isValidUID", LuaScriptInterface::luaIsValidUID);
@@ -3465,6 +3470,14 @@ int LuaScriptInterface::luaDoSetCreatureLight(lua_State* L)
 	creature->addCondition(condition);
 	pushBoolean(L, true);
 	return 1;
+}
+
+int LuaScriptInterface::luaPrintStackTrace(lua_State* L)
+{
+  BOOST_LOG_TRIVIAL(info) << "printing stacktrace\n" <<
+    boost::stacktrace::stacktrace() << "\n";
+  pushBoolean(L, true);
+  return 1;
 }
 
 int LuaScriptInterface::luaAddEvent(lua_State* L)
